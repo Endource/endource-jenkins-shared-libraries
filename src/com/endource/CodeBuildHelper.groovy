@@ -15,3 +15,5 @@ def runBuild(name, specFile, artifactDir) {
         sh "unzip -d ${artifactDir} ${artifactDir}/reports.zip"
     }
 }
+
+return this
