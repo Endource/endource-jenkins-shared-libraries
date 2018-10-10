@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 package com.endource
 
-def runBuild(name, specFile, artifactDir, envParams='') {
+def runBuild(name, specFile, artifactDir, envParams) {
     script {
         def buildSpec = readFile(specFile)
         def result = awsCodeBuild(
