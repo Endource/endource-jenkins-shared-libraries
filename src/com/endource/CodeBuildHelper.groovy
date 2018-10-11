@@ -14,7 +14,8 @@ def runBuild(name, specFile, artifactDir, envParams) {
                 envVariables: envParams,
                 sourceControlType: 'project', sourceVersion: "${GIT_COMMIT}", sseAlgorithm: 'AES256')
         } catch (Exception e) {
-            currentBuild.result = 'WARNING'
+            result=e.getCodeBuildResult()
+            throw e
         } finally {
             sh "aws s3 cp s3://${result.getArtifactsLocation().split(':::')[1]} ${artifactDir}/reports.zip || true"
             sh "unzip -d ${artifactDir} ${artifactDir}/reports.zip"
